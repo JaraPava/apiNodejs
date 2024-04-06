@@ -1,6 +1,7 @@
 
 import mongoose from 'mongoose'
 import {usersTest} from './json'
+import { registeredProductModel, userModel } from './data/mongo';
 main().catch(err => console.log(err));
 
 async function main() {
@@ -19,21 +20,21 @@ async function main() {
   //#endregion
 
   //#region register new user
-  // // Registra un nuevo usuario
-  // const newUser = await userModel.create({
-  //   address: {
-  //     city: 'miami',
-  //     street: 'avondale ave',
-  //     number: 345,
-  //     zipcode: '96378-0245'
-  //   },
-  //   email: 'kate@gmail.com',
-  //   username: 'kate_h',
-  //   password: 'kfejk@*_',
-  //   name: { firstname: 'kate', lastname: 'hale' },
-  //   phone: '1-678-456-1934',
-  // });
-  // console.log(`Successfully registered user with id: ${newUser._id}`);
+  // Registra un nuevo usuario
+  const newUser = await userModel.create({
+    address: {
+      city: 'miami',
+      street: 'avondale ave',
+      number: 345,
+      zipcode: '96378-0245'
+    },
+    email: 'kate@gmail.com',
+    username: 'kate_h',
+    password: 'kfejk@*_',
+    name: { firstname: 'kate', lastname: 'hale' },
+    phone: '1-678-456-1934',
+  });
+  console.log(`Successfully registered user with id: ${newUser._id}`);
   //#endregion
 
   //#region authenticate user
