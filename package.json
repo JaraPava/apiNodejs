@@ -1,0 +1,35 @@
+{
+  "name": "02-bases",
+  "version": "0.0.1",
+  "description": "Esta es mi primera aplicación real de node.js para el registro de usuarios y productos",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "dev": "nodemon",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/app.js"
+  },
+  "author": "Jose Alberto",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.4",
+    "@types/uuid": "^9.0.8",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "get-age": "^1.0.1",
+    "mongoose": "^8.3.0",
+    "uuid": "^9.0.1",
+    "winston": "^3.13.0"
+  }
+}
