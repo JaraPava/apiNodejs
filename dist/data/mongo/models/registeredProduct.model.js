@@ -12,7 +12,7 @@ const registeredProductSchema = new mongoose_1.default.Schema({
     description: { type: String, required: false },
     category: { type: String, required: false },
     image: { type: String, required: false },
-    rating: { rate: { type: String, required: false }, count: { type: String, required: false } },
+    rating: { rate: { type: Number, required: false }, count: { type: Number, required: false } },
     dateCreated: { type: Date, default: Date.now }
 }, {
     collection: "registeredProducts"

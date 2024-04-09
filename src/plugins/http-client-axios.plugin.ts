@@ -7,7 +7,7 @@ export const httpClientPlugin = {
         return data;
     },
 
-    post: async(url: string, body: any) => {},
-    put: async(url: string, body: any) => {},
-    delete:async(url: string)=>{},
+    // post: async(url: string, body: any) => {},
+    // put: async(url: string, body: any) => {},
+    // delete:async(url: string)=>{},
 };

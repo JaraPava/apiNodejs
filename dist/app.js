@@ -8,44 +8,57 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = require('mongoose');
-const mongo_1 = require("./data/mongo");
+const mongoose_1 = __importDefault(require("mongoose"));
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+const PORT = 3000;
+app.get('/ping', (_req, res) => {
+    console.log('someone ping here:V');
+    res.send('pong amigo mio :V');
+});
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 main().catch(err => console.log(err));
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield mongoose.connect('mongodb://127.0.0.1:27017/store');
+        yield mongoose_1.default.connect('mongodb://127.0.0.1:27017/store');
         console.log('connected succesful');
         //#region get all products
-        //Obtener todos los productos de la colección Products de la base de datos de Mongodb
+        // //Obtener todos los productos de la colección Products de la base de datos de Mongodb
         // const allRegisteredProducts = await registeredProductModel.find();
         // if(allRegisteredProducts.length > 0){
-        //   console.log(allRegisteredProducts);
+        //   // console.log(allRegisteredProducts);
         // }else{
         //   console.log('There are no registered products yet');
         // };
         //#endregion
         //#region register new user
-        //Registra un nuevo usuario
+        // // Registra un nuevo usuario
         // const newUser = await userModel.create({
         //   address: {
-        //     city: 'el paso',
-        //     street: 'prospect st',
-        //     number: 124,
-        //     zipcode: '12346-0456'
+        //     city: 'miami',
+        //     street: 'avondale ave',
+        //     number: 345,
+        //     zipcode: '96378-0245'
         //   },
-        //   email: 'david_r@gmail.com',
-        //   username: 'david_r',
-        //   password: '3478*#54',
-        //   name: { firstname: 'david', lastname: 'russell' },
-        //   phone: '1-678-345-9856',
+        //   email: 'kate@gmail.com',
+        //   username: 'kate_h',
+        //   password: 'kfejk@*_',
+        //   name: { firstname: 'kate', lastname: 'hale' },
+        //   phone: '1-678-456-1934',
         // });
         // console.log(`Successfully registered user with id: ${newUser._id}`);
         //#endregion
         //#region authenticate user
-        // Logea y obtiene la información del usuario
+        // // Logea y obtiene la información del usuario
         // var username = 'johnd';
-        // var password = 'm38rmF$';
+        // var password = 'm38rmF$4';
         // const userAuth = await userModel.find({$and:[{username: username}, {password:password}]});
         // if(userAuth.length > 0){
         //   console.log('User login succesful');
@@ -55,153 +68,70 @@ function main() {
         // }  
         //#endregion
         //#region register product by user
-        // const userId = users[3]._id.$oid;
+        // //Registra el producto de un usuario mediante el id
+        // const userId = usersTest[3]._id;
         // const newProduct = await registeredProductModel.create({
         //   userId: userId,
         //   title: 'Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5',
-        //   price: 109,
+        //   price: 999,
         //   description: '3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.',
         //   category: 'electronics',
         //   image: 'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',     
         //   rating: { rate: 4.8, count: 319 }
         // });
         // await newProduct.save();
-        // console.log(`New product add with id: ${newProduct._id}`);
+        // console.log(`New product add with idProduct: ${newProduct._id}`);
         //#endregion
         //#region edit product by user
-        const userId = users[3]._id.$oid;
-        const productId = "66104aab3d2adf9c3854872c";
-        console.log(userId);
-        const allProductsById = yield mongo_1.registeredProductModel.find({ userId: userId });
-        if (allProductsById.length > 0) {
-            // console.log('El usuario tiene los siguientes productos registrados: ', allProductsById);
-            const productEdited = mongo_1.registeredProductModel.updateOne({ $and: [{ userId: userId }, { _id: productId }] }, { $set: {
-                    title: 'Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5',
-                    price: 110,
-                    description: '3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.',
-                    category: 'electronics',
-                    image: 'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
-                    rating: { rate: 4.8, count: 319 }
-                }
-            });
-            console.log(productEdited);
-        }
-        else {
-            console.log('This user does not have registered products yet, try registering products');
-        }
+        // // Usuario puede editar mediante el producto y el id del mismo
+        //   var userId = new mongoose.Types.ObjectId('66103c961ef0bc2bec4f7c87');
+        //   var productId = new mongoose.Types.ObjectId('66104aab3d2adf9c3854872c');
+        //   console.log(`userId: ${userId} y el productId: ${productId}`);
+        //   const allProductsById = await registeredProductModel.find({ userId: userId });
+        //   if (allProductsById.length > 0) {
+        //     // console.log('El usuario tiene los siguientes productos registrados: ', allProductsById);
+        //     await registeredProductModel.findOneAndUpdate(
+        //       {
+        //         $and: [
+        //           { _id: new mongoose.Types.ObjectId("66104aab3d2adf9c3854872c") },
+        //           { userId: new mongoose.Types.ObjectId("661030993a6aa7094701b8b8") }
+        //         ]
+        //       },
+        //       {
+        //         $set: {
+        //           title: 'Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5',
+        //           price: 444,
+        //           description: '3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.',
+        //           category: 'electronics',
+        //           image: 'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
+        //           rating: { rate: 4.8, count: 319 }
+        //         }
+        //       }
+        //     );
+        //     // console.log(productEdited);
+        //   } else {
+        //     console.log('This user does not have registered products yet, try registering products');
+        //   }
         //#endregion
         //#region delete product by user
+        // var userId = new mongoose.Types.ObjectId('66103c961ef0bc2bec4f7c87');
+        // var productId = new mongoose.Types.ObjectId('66104aab3d2adf9c3854872c');
+        // // console.log(`userId: ${userId} y el productId: ${productId}`);
+        // const allProductsById = await registeredProductModel.find({ userId: userId });
+        // if (allProductsById.length > 0) {
+        //   // console.log('El usuario tiene los siguientes productos registrados: ', allProductsById);
+        //   await registeredProductModel.deleteOne(
+        //     {
+        //       $and: [
+        //         { _id: new mongoose.Types.ObjectId("66104aab3d2adf9c3854872c") },
+        //         { userId: new mongoose.Types.ObjectId("661030993a6aa7094701b8b8") }
+        //       ]
+        //     },
+        //   );
+        //   // console.log(productEdited);
+        // } else {
+        //   console.log('This user does not have registered products yet, try registering products');
+        // }
         //#endregion
-        // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
     });
 }
-const users = [
-    {
-        "_id": {
-            "$oid": "661030993a6aa7094701b8b8"
-        },
-        "email": "john@gmail.com",
-        "username": "johnd",
-        "password": "m38rmF$",
-        "name": {
-            "firstname": "john",
-            "lastname": "doe"
-        },
-        "address": {
-            "city": "kilcoole",
-            "street": "new road",
-            "number": "7682",
-            "zipcode": "12926-3874"
-        },
-        "phone": "1-570-236-7033",
-        "__v": 0
-    },
-    {
-        "_id": {
-            "$oid": "66103aff69237db955b4b188"
-        },
-        "email": "morrison@gmail.com",
-        "username": "mor_2314",
-        "password": "83r5^_",
-        "name": {
-            "firstname": "david",
-            "lastname": "morrison"
-        },
-        "address": {
-            "city": "kilcoole",
-            "street": "Lovers Ln",
-            "number": "7267",
-            "zipcode": "12926-3874"
-        },
-        "phone": "1-570-236-7033",
-        "__v": 0
-    },
-    {
-        "_id": {
-            "$oid": "66103bb74c4879872076476b"
-        },
-        "email": "kevin@gmail.com",
-        "username": "kevinryan",
-        "password": "kev02937@",
-        "name": {
-            "firstname": "kevin",
-            "lastname": "ryan"
-        },
-        "address": {
-            "city": "Cullman",
-            "street": "Frances Ct",
-            "number": "86",
-            "zipcode": "29567-1452"
-        },
-        "phone": "1-567-094-1345",
-        "__v": 0
-    },
-    {
-        "_id": {
-            "$oid": "66103c961ef0bc2bec4f7c87"
-        },
-        "email": "don@gmail.com",
-        "username": "donero",
-        "password": "ewedon",
-        "name": {
-            "firstname": "don",
-            "lastname": "romer"
-        },
-        "address": {
-            "city": "San Antonio",
-            "street": "Hunters Creek Dr",
-            "number": "6454",
-            "zipcode": "98234-1734"
-        },
-        "phone": "1-765-789-6734",
-        "__v": 0
-    },
-    {
-        "_id": {
-            "$oid": "66104ba11d9128e410e11013"
-        },
-        "email": "derek@gmail.com",
-        "username": "derek",
-        "password": "jklg*_56",
-        "name": {
-            "firstname": "derek",
-            "lastname": "powell"
-        },
-        "address": {
-            "city": "san Antonio",
-            "street": "adams St",
-            "number": "245",
-            "zipcode": "80796-1234"
-        },
-        "phone": "1-956-001-1945",
-        "__v": 0
-    },
-];
-const productToEdit = {
-    title: 'Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5',
-    price: 109,
-    description: '3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.',
-    category: 'electronics',
-    image: 'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
-    rating: { rate: 4.8, count: 319 }
-};

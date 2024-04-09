@@ -22,7 +22,7 @@ exports.httpClientPlugin = {
         const resp = yield fetch(url);
         return yield resp.json();
     }),
-    post: (url, body) => __awaiter(void 0, void 0, void 0, function* () { }),
-    put: (url, body) => __awaiter(void 0, void 0, void 0, function* () { }),
-    delete: (url) => __awaiter(void 0, void 0, void 0, function* () { }),
+    // post: async(url:string, body:any) => {},
+    // put: async(url:string, body:any) => {},
+    // delete:async(url:string)=>{},
 };
