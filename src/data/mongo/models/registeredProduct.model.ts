@@ -15,4 +15,4 @@ const registeredProductSchema = new mongoose.Schema({
   }
 );
 
-export const registeredProductModel = mongoose.model('registeredProduct', registeredProductSchema);
+export const ProductModel = mongoose.model('registeredProduct', registeredProductSchema);
