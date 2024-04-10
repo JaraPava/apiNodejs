@@ -1,10 +1,15 @@
+import {ObjectId} from 'mongodb';
+
 export interface Products {
+    _id?:         ObjectId;
+    userId:      ObjectId,
     title:       string;
     price:       number;
     description: string;
     category:    Category;
     image:       string;
     rating:      Rating;
+    dateCreated: string;
 }
 
 export enum Category {
@@ -18,3 +23,6 @@ export interface Rating {
     rate:  number;
     count: number;
 }
+
+export type NewUserProduct = Omit<Products,'_id'>;
+

@@ -12,6 +12,7 @@ async function main() {
   app.use(express.json());
   const PORT = 3000;
   await mongoose.connect('mongodb://127.0.0.1:27017/store');
+
   console.log('connected succesful');
 
 

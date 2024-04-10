@@ -6,7 +6,6 @@ export interface User {
     password: string;
     name:     Name;
     phone:    string;
-    __v:      number;
 }
 
 export interface Address {

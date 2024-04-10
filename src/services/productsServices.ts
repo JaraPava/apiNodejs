@@ -1,7 +1,7 @@
 import { ProductModel, userModel } from '../data/mongo';
-import { Products } from '../data/interfaces/products';
+import { NewUserProduct, Products } from '../data/interfaces/products';
 import { toObjectId } from '../plugins/convertObjectId.plugins';
-// import { User } from '../data/interfaces/users.interface';
+import { ObjectId } from 'mongodb';
 
 export const getAllProducts = async () => {
 
@@ -13,7 +13,6 @@ export const getAllProducts = async () => {
 }
 
 export const getAllProductsByUser = async (id: string): Promise<Products[] | undefined> => {
-    console.log('id para obtener los productos por usuarios -> ', id)
     var products: Products[] = []
     if (await existUser(id) && await existProductsByUser(id)) {
         products = await ProductModel.find({ userId: id });
@@ -32,6 +31,15 @@ export const getProductByUserAndProductId = async (idUser: string, idProduct: st
         }
     }
     return null;
+}
+
+export const addUserProduct = async(newUserProduct:NewUserProduct):Promise<Products|undefined> =>{
+    const newUserProd:Products|null= newUserProduct;
+    newUserProd._id = new ObjectId();
+    const addedUserProduct = await ProductModel.create(newUserProd);
+    console.log(addedUserProduct);
+    addedUserProduct.save();
+    return newUserProd;
 }
 
 async function existUser(id: string): Promise<boolean> {
