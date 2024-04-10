@@ -25,7 +25,7 @@ const parseDescription = (descriptionFromRequest: string):string=>{
     return descriptionFromRequest;
 };
 
-const parseCategory = (categoryFromRequest:any):Category => {
+const parseCategory = (categoryFromRequest:any):Category=> {
     if(!(isString(categoryFromRequest) || isCategory(categoryFromRequest))){
         throw new Error('Incorrect or missing category')
     }

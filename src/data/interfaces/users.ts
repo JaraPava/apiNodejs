@@ -1,5 +1,7 @@
+import { ObjectId } from "mongoose";
+
 export interface User {
-    _id: string
+    _id: ObjectId
     address:  Address;
     email:    string;
     username: string;
@@ -25,3 +27,5 @@ export interface Name {
     firstname: string;
     lastname:  string;
 }
+
+export type NewUser = Omit<User, '_id'>;

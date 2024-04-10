@@ -23,18 +23,18 @@ export const getAllProductsByUser = async (id: string): Promise<Products[] | und
     return undefined;
 }
 
-export const getProductByUserAndProductId = async (idUser: string, idProduct: string): Promise<Products|null> => {
+export const getProductByUserAndProductId = async (idUser: string, idProduct: string): Promise<Products | null> => {
     if (await existUser(idUser) && await existProductsByUser(idUser) && await existProductByUserAndProductId(idUser, idProduct)) {
-        const products:Products|null = await ProductModel.findOne({$and:[{userId:idUser},{_id:idProduct}]});
-        if(products != (null||undefined)){
+        const products: Products | null = await ProductModel.findOne({ $and: [{ userId: idUser }, { _id: idProduct }] });
+        if (products != (null || undefined)) {
             return products;
         }
     }
     return null;
 }
 
-export const addUserProduct = async(newUserProduct:NewUserProduct):Promise<Products|undefined> =>{
-    const newUserProd:Products|null= newUserProduct;
+export const addUserProduct = async (newUserProduct: NewUserProduct): Promise<Products | undefined> => {
+    const newUserProd: Products | null = newUserProduct;
     newUserProd._id = new ObjectId();
     const addedUserProduct = await ProductModel.create(newUserProd);
     console.log(addedUserProduct);
@@ -54,9 +54,6 @@ async function existProductsByUser(idUser: string): Promise<boolean> {
         const products = await ProductModel.find({ userId: idUser });
         if (products.length > 0) {
             return true;
-            // const product = products.find(p => p._id.toString() === idProduct);
-            // if(product){
-            // }
         }
     }
     return false
@@ -64,7 +61,7 @@ async function existProductsByUser(idUser: string): Promise<boolean> {
 
 async function existProductByUserAndProductId(idUser: string, idProduct: string): Promise<boolean> {
     if (await existProductsByUser(idUser)) {
-        const products = await ProductModel.find({$and:[{userId:idUser},{_id:idProduct}]});
+        const products = await ProductModel.find({ $and: [{ userId: idUser }, { _id: idProduct }] });
         const product = products.find(p => p._id.toString() === idProduct);
         if (product) {
             return true
