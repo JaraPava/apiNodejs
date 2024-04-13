@@ -1,27 +1,38 @@
 
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
+// import express from 'express';
+// import productsRouter from './routes/products';
+// import loginRouter from './routes/login';
+
+import "dotenv/config";
 import express from 'express';
-import productsRouter from './routes/products';
-import loginRouter from './routes/login';
+import cors from 'cors';
+const PORT = process.env.PORT || 3001;
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 
-main().catch(err => console.log(err));
+// main().catch(err => console.log(err));
 
-async function main() {
-  const app = express();
-  app.use(express.json());
-  const PORT = 3000;
-  await mongoose.connect('mongodb://127.0.0.1:27017/store');
+// async function main() {
+  // const app = express();
 
-  console.log('connected succesful');
+  // const PORT = 3000;
+  // await mongoose.connect('mongodb://127.0.0.1:27017/store');
+
+  // console.log('connected succesful');
 
 
-  app.use('/api/products', productsRouter);
-  app.use('/api/users', loginRouter);
+  // app.use('/api/products', productsRouter);
+  // app.use('/api/users', loginRouter);
 
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+
 
   //   await mongoose.connect('mongodb://127.0.0.1:27017/store');
   //   console.log('connected succesful');
@@ -129,6 +140,6 @@ async function main() {
   // }
   //#endregion
 
-}
+// }
 
 
