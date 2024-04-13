@@ -15,7 +15,10 @@ const app = express();
 // app.use(express.json());
 app.use(cors());
 
+app.use(express.json());
+
 app.use(router);
+
 
 db().then(()=>console.log('Connection Ready My Friend'))
 
