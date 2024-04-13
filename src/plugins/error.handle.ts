@@ -5,4 +5,4 @@ const handleHttp = (res:Response, error:string)=>{
     res.send({error});
 };
 
-export {handleHttp as httpHandler};
+export {handleHttp};
