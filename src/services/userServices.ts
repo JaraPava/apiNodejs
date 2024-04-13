@@ -1,5 +1,5 @@
 
-import { User } from "../data/interfaces/users";
+import { User } from "../interfaces/users";
 import { userModel } from "../data/mongo";
 
 export const getAllUsers = async() =>{

@@ -1,5 +1,5 @@
 import { ProductModel, userModel } from '../data/mongo';
-import { NewUserProduct, Products } from '../data/interfaces/products';
+import { NewUserProduct, Products } from '../interfaces/products';
 import { toObjectId } from '../plugins/convertObjectId.plugins';
 import { ObjectId } from 'mongodb';
 

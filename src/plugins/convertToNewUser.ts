@@ -1,27 +1,27 @@
-import { Address } from 'cluster';
-import { NewUser} from '../data/interfaces/users';
+// import { Address } from 'cluster';
+// import { NewUser} from '../interfaces/users';
 
 
-const parseAddress = (obj:any):Address|undefined =>{
-    const addressObj = obj as Address;
+// const parseAddress = (obj:any):Address|undefined =>{
+//     const addressObj = obj as Address;
 
-    return 
-}
+//     return 
+// }
 
-const isAddress = (obj:any):boolean => {
-    const addressObj = obj as Address;
+// const isAddress = (obj:any):boolean => {
+//     const addressObj = obj as Address;
 
-    return typeof ((addressObj.address[]))
-}
+//     return typeof ((addressObj.address[]))
+// }
 
-export const toNewUser = (objeto:any):NewUser =>{
-    const newUser:NewUser = {
-        address:parseAddress(objeto.address),
-        email:parseEmail(objeto.email),
-        username:parseUsername(objeto.username),
-        password: parsePassword(objeto.password),
-        name: parseName(objeto.name),
-        phone: parsePhone(objeto.phone)
-    }
-    return newUser;
-}
+// export const toNewUser = (objeto:any):NewUser =>{
+//     const newUser:NewUser = {
+//         address:parseAddress(objeto.address),
+//         email:parseEmail(objeto.email),
+//         username:parseUsername(objeto.username),
+//         password: parsePassword(objeto.password),
+//         name: parseName(objeto.name),
+//         phone: parsePhone(objeto.phone)
+//     }
+//     return newUser;
+// }
