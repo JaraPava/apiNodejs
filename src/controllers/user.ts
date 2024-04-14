@@ -1,5 +1,6 @@
-import {Request, Response} from 'express'
+import {Request, Response} from 'express';
 import { handleHttp } from '../plugins/error.handle';
+
 const getUser = (req:Request, res: Response) => {
     try {
         console.log(req);

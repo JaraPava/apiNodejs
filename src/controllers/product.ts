@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
 import { handleHttp } from '../plugins/error.handle';
+import { addUserProduct } from '../services/product';
 
 /*
 * GET 
@@ -7,6 +8,7 @@ import { handleHttp } from '../plugins/error.handle';
 const getProduct = (req:Request, res:Response) => {
     try {
         console.log(req);
+        res.send(req)
     } catch (error) {
         handleHttp(res,"ERROR_GET_PRODUCT");
     }
@@ -20,9 +22,12 @@ const getProducts = (req:Request, res:Response) => {
     }
 };
 
-const postProduct = (req:Request, res:Response) => {
+const postProduct = async (req:Request, res:Response) => {
     try {
-        console.log(req.body);
+        const response = await addUserProduct(req.body);
+        const data = response?response:"NOT_FOUND";
+        console.table(data);
+        res.send(data);
     } catch (error) {
         handleHttp(res,"ERROR_POST_PRODUCT");
     }
