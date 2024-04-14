@@ -1,6 +1,6 @@
 
 const registerNewUser = async() =>{
-
+    
 };
 
 const loginUser = async () => {
