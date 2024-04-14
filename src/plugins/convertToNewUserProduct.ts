@@ -1,6 +1,6 @@
 import {ObjectId} from 'mongodb';
 import mongoose from 'mongoose';
-import { Category, NewUserProduct, Rating } from '../interfaces/products';
+import { Category, NewUserProduct, Rating } from '../interfaces/product.interface';
 
 
 
