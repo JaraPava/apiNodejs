@@ -7,7 +7,7 @@ import { addUserProduct } from '../services/product';
 */
 const getProduct = (req:Request, res:Response) => {
     try {
-        console.log(req);
+        // console.log(req);
         res.send(req)
     } catch (error) {
         handleHttp(res,"ERROR_GET_PRODUCT");
@@ -26,7 +26,6 @@ const postProduct = async (req:Request, res:Response) => {
     try {
         const response = await addUserProduct(req.body);
         const data = response?response:"NOT_FOUND";
-        console.table(data);
         res.send(data);
     } catch (error) {
         handleHttp(res,"ERROR_POST_PRODUCT");
