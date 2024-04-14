@@ -1,13 +1,11 @@
 import { Request, Response } from 'express';
 import { registerNewUser } from '../services/auth';
+// import { handleHttp } from '../plugins/error.handle';
 const registerCtrl = async (req: Request, res: Response) => {
-    try {
-        const responseUser = await registerNewUser();
-        console.log(responseUser)
-        res.send(req)
-    } catch (error) {
+    const responseUser = await registerNewUser(req.body);
+    console.log('Respuesta del responseUser ', responseUser)
+    res.send(responseUser);
 
-    }
 }
 
 const loginCtrl = async (req: Request, res: Response) => {
