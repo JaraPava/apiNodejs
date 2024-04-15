@@ -6,9 +6,7 @@ import { JwtPayload } from 'jsonwebtoken';
 interface RequestExt extends Request {
     user?: string | JwtPayload;
 }
-/*
-* GET 
-*/
+
 const getProduct = (req: RequestExt, res: Response) => {
     try {
         // console.log(req);

@@ -11,7 +11,8 @@ const getUser = (req:Request, res: Response) => {
 
 const getUsers = (req:Request, res: Response) => {
     try {
-        console.log({req});
+        console.log(req);
+        res.send(req)
     } catch (error) {
         handleHttp(res, "ERROR_GET_USERS")
     }
@@ -20,7 +21,7 @@ const getUsers = (req:Request, res: Response) => {
 const postUser = ({body}:Request, res: Response) => {
     try {
         console.log(body);
-        res.send(body)
+        res.send(body);
     } catch (error) {
         handleHttp(res, "ERROR_POST_USER")
     }
