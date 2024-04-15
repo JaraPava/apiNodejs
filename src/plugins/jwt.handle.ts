@@ -5,7 +5,6 @@ const JWT_SECRET = process.env.JWT_SECRET || "token.01010101"
 //Genera un token
 const generateToken = async(id:string) => {
     const jwt = await sign({id}, JWT_SECRET, {expiresIn:"2h"});
-    console.log('jwt amigo mío :v -> ', jwt)
     return jwt;
 };
 

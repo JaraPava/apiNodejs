@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
 import { handleHttp } from '../plugins/error.handle';
+import { getAllUsers } from '../services/user';
 
 const getUser = (req:Request, res: Response) => {
     try {
@@ -9,21 +10,14 @@ const getUser = (req:Request, res: Response) => {
     }
 };
 
-const getUsers = (req:Request, res: Response) => {
+const getUsers = async(_req:Request, res: Response) => {
     try {
-        console.log(req);
-        res.send(req)
+        const responseUser = await getAllUsers();
+        (responseUser != (undefined || null))
+            ? res.send(responseUser)
+            : res.status(404).send('NOT_USERS_REGISTERED_YET');
     } catch (error) {
         handleHttp(res, "ERROR_GET_USERS")
-    }
-};
-
-const postUser = ({body}:Request, res: Response) => {
-    try {
-        console.log(body);
-        res.send(body);
-    } catch (error) {
-        handleHttp(res, "ERROR_POST_USER")
     }
 };
 
@@ -43,4 +37,4 @@ const deleteUser = (req:Request, res: Response) => {
     }
 };
 
-export {getUser, getUsers, postUser, updateUser, deleteUser};
+export {getUser, getUsers,updateUser, deleteUser};
