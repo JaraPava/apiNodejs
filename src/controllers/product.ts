@@ -11,7 +11,7 @@ const getProduct = (req: RequestExt, res: Response) => {
     try {
         // console.log(req);
         res.send({
-            data: "Esto solo lo ve las personas con active session / JWT",
+            data: "LLegando a la petición getProduct",
             user: req.user
         });
     } catch (error) {

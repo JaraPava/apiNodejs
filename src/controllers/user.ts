@@ -1,16 +1,19 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { handleHttp } from '../plugins/error.handle';
-import { getAllUsers } from '../services/user';
+import { getAllUsers, getUserById } from '../services/user';
 
-const getUser = (req:Request, res: Response) => {
+const getUser = async (req: Request, res: Response) => {
     try {
-        console.log(req);
+        const userFound = await getUserById(req.params.id);
+        (userFound != (undefined || null))
+            ? res.send(userFound)
+            : res.status(404).send('USER_NOT_FOUND');
     } catch (error) {
         handleHttp(res, "ERROR_GET_USER")
     }
 };
 
-const getUsers = async(_req:Request, res: Response) => {
+const getUsers = async (_req: Request, res: Response) => {
     try {
         const responseUser = await getAllUsers();
         (responseUser != (undefined || null))
@@ -21,7 +24,7 @@ const getUsers = async(_req:Request, res: Response) => {
     }
 };
 
-const updateUser = (req:Request, res: Response) => {
+const updateUser = (req: Request, res: Response) => {
     try {
         console.log(req);
     } catch (error) {
@@ -29,7 +32,7 @@ const updateUser = (req:Request, res: Response) => {
     }
 };
 
-const deleteUser = (req:Request, res: Response) => {
+const deleteUser = (req: Request, res: Response) => {
     try {
         console.log(req);
     } catch (error) {
@@ -37,4 +40,4 @@ const deleteUser = (req:Request, res: Response) => {
     }
 };
 
-export {getUser, getUsers,updateUser, deleteUser};
+export { getUser, getUsers, updateUser, deleteUser };

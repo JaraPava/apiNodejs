@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { Auth } from './auth';
 
 export interface User extends Auth {
@@ -23,4 +24,4 @@ interface Name {
     lastname:  string;
 }
 
-// export type NewUser = Omit<User, '_id'>;
+export interface UserSaved extends User {_id:ObjectId};
