@@ -4,14 +4,14 @@ import { ProductModel } from '../models/product.model';
 // import { toObjectId } from '../plugins/convertObjectId.plugins';
 // import { ObjectId } from 'mongodb';
 
-// export const getAllProducts = async () => {
+export const getAllProducts = async () => {
 
-//     const allRegisteredProducts = await ProductModel.find();
-//     if (allRegisteredProducts.length > 0) {
-//         return allRegisteredProducts
-//     }
-//     return undefined;
-// }
+    const allRegisteredProducts = await ProductModel.find();
+    if (allRegisteredProducts.length > 0) {
+        return allRegisteredProducts
+    }
+    return undefined;
+}
 
 // export const getAllProductsByUser = async (id: string): Promise<Products[] | undefined> => {
 //     var products: Products[] = []

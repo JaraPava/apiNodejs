@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { handleHttp } from '../plugins/error.handle';
-import { addUserProduct } from '../services/product';
+import { addUserProduct, getAllProducts } from '../services/product';
 import { JwtPayload } from 'jsonwebtoken';
 
 interface RequestExt extends Request {
@@ -19,9 +19,14 @@ const getProduct = (req: RequestExt, res: Response) => {
     }
 };
 
-const getProducts = (req: Request, res: Response) => {
+const getProducts = async(_req: Request, res: Response) => {
     try {
-        console.log(req);
+        console.log('Getting all products');
+        const allProducts = await getAllProducts();
+    
+        (allProducts != (undefined || null))
+            ? res.send(allProducts)
+            : res.status(404).send('PRODUCTS_NOT_REGISTERED_YET');
     } catch (error) {
         handleHttp(res, "ERROR_GET_PRODUCTS");
     }
