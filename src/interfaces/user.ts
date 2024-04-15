@@ -2,6 +2,7 @@ import { Auth } from './auth';
 
 export interface User extends Auth {
     phone:    string;
+    username: string;
 }
 
 interface Address {

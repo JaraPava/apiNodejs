@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { registerNewUser } from '../services/auth';
+import { loginUser, registerNewUser } from '../services/auth';
 // import { handleHttp } from '../plugins/error.handle';
 const registerCtrl = async (req: Request, res: Response) => {
     const responseUser = await registerNewUser(req.body);
@@ -8,9 +8,17 @@ const registerCtrl = async (req: Request, res: Response) => {
 
 }
 
-const loginCtrl = async (req: Request, res: Response) => {
+const loginCtrl = async ({body}: Request, res: Response) => {
     try {
-        res.send(req)
+        const {email, password} = body;
+        const responseUser = await loginUser({email, password});
+        if(responseUser === 'PASSWORD_INCORRECT'){
+            res.status(403)
+            res.send(responseUser);
+        }else{
+            res.send(responseUser);
+        }
+        res.send(responseUser);
     } catch (error) {
 
     }
