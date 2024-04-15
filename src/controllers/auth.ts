@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { loginUser, registerNewUser } from '../services/auth';
+import { handleHttp } from '../plugins/error.handle';
 // import { handleHttp } from '../plugins/error.handle';
 const registerCtrl = async (req: Request, res: Response) => {
     const responseUser = await registerNewUser(req.body);
@@ -18,9 +19,8 @@ const loginCtrl = async ({body}: Request, res: Response) => {
         }else{
             res.send(responseUser);
         }
-        res.send(responseUser);
     } catch (error) {
-
+        handleHttp(body, "LOGIN_ERROR")
     }
 }
 

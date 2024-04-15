@@ -5,10 +5,10 @@ import { addUserProduct } from '../services/product';
 /*
 * GET 
 */
-const getProduct = (req:Request, res:Response) => {
+const getProduct = (_req:Request, res:Response) => {
     try {
         // console.log(req);
-        res.send(req)
+        res.send({data:"Esto solo lo ve las personas con active session / JWT"})
     } catch (error) {
         handleHttp(res,"ERROR_GET_PRODUCT");
     }
