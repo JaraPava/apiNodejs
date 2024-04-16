@@ -1,14 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-import { verifyToken} from '../plugins/jwt.handle';
-import {JwtPayload} from 'jsonwebtoken'
+import { verifyToken } from '../plugins/jwt.handle';
+import { JwtPayload } from 'jsonwebtoken'
 interface RequestExt extends Request {
-    user?: string|JwtPayload;
+    user?: string | JwtPayload
 }
 
 //Extendemos de Request y le agregamos el user de tipo string o JwtPayload
 const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
     try {
-        
         //Obtenemos el JWT ->  El json web token se pasa en el encabezado y en el encabezado debe tener el authorization
         const jwtByUser = req.headers.authorization || '';
         const jwt = jwtByUser.split(' ').pop(); // ['Bearear','Algo'] -> retorna el algo
@@ -20,13 +19,9 @@ const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
             res.send('NO_TIENES_UN_JWT_VALIDO');
         } else {
             //1. Creamos un interface llamada RequestExt que extiende de Request
-            req.user = isUser;
-            // console.log({ jwtByUser });
+            req.user = isUser;        // console.log({ jwtByUser });
             next();
-
         }
-
-
     } catch (error) {
         // console.log('Error', error)
         res.status(400)

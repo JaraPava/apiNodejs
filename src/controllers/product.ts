@@ -32,9 +32,14 @@ const getProducts = async(_req: Request, res: Response) => {
     }
 };
 
-const postProduct = async (req: Request, res: Response) => {
+const postProduct = async (req: RequestExt, res: Response) => {
     try {
-        const response = await addUserProduct(req.body);
+        // const {} = req.user;
+        
+        const response = await addUserProduct(req.body.userId,req.body);
+        (response != (undefined || null))
+            ? res.send(response)
+            : res.status(404).send("ERROR_IN_SERVICES_ADDUSERPRODUCT")
         const data = response ? response : "NOT_FOUND";
         res.send(data);
     } catch (error) {

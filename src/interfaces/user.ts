@@ -25,3 +25,4 @@ interface Name {
 }
 
 export interface UserSaved extends User {_id:ObjectId};
+export interface UserLogin extends User {_id:ObjectId}

@@ -1,6 +1,7 @@
 
-import { NewUserProduct} from '../interfaces/product.interface';
+import { Products} from '../interfaces/product.interface';
 import { ProductModel } from '../models/product.model';
+import { toObjectId } from '../plugins/convertObjectId.plugins';
 // import { toObjectId } from '../plugins/convertObjectId.plugins';
 // import { ObjectId } from 'mongodb';
 
@@ -34,8 +35,10 @@ export const getAllProducts = async () => {
 //     return null;
 // }
 
-export const addUserProduct = async (newUserProduct: NewUserProduct) => {
+export const addUserProduct = async (userId:string,newUserProduct: Products) => {
+    newUserProduct.userId = toObjectId(userId);
     const addedUserProduct = await ProductModel.create(newUserProduct);
+    console.log(addedUserProduct);
     return addedUserProduct;
 }
 
